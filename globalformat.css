@@ -12,9 +12,9 @@ div#progressOuter {
   transform:translateY(-50%);
   position:relative;
   top:50%;
-  height: fit-content;
+  height: 80px;
   font-size: 80px;
-  font-family: ""
+/*   font-family: "" */
   background-color: #eee;
 }
 
