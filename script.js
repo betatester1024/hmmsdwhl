@@ -15,9 +15,6 @@ function accessLoc() {
     // byId("")
   }, (err)=>{
     byId("info").style.color = "red";
-    if (err.code == 1) {
-      byId("info").innerHTML += `<a href="javascript:accessLoc()">Retry?</a>`
-    }
   });
 }
 function globalOnload() {

@@ -15,6 +15,7 @@ body {
   display:flex;
   flex-direction:column;
   justify-content:center;
+  background-color: #eee;
 }
 
 #title {
@@ -22,8 +23,9 @@ body {
   font-family:"GillSans", sans-serif;
   flex-direction:row;
   justify-content: center;
-  font-size: 80px;
+  font-size: 50px;
   flex-wrap: wrap;
+  font-weight:bold;
   gap: 15px;
   padding: 10px;
 }
@@ -31,7 +33,6 @@ body {
 .animateIn {
   
   display: inline-block;
-  white-space: nobreak;
   opacity: 0;
   top: -90%;
   position:relative;
@@ -57,7 +58,7 @@ div#progressOuter {
   padding: 5px;
   font-size: 70px;
   font-family: "GillSans", sans-serif;
-  background-color: #eee;
+  background-color: #bbb;
 }
 
 div#progressInner {
@@ -81,6 +82,7 @@ div#progressInner {
 
 @font-face {
     font-family: GillSans;
-    font-weight: bold;
-    src: url("https://cdn.glitch.global/994c2bd5-1923-49dd-a626-a1884296c61d/Gill%20Sans.otf?v=1711738555310") url("https://cdn.glitch.global/994c2bd5-1923-49dd-a626-a1884296c61d/Gill%20Sans%20Bold.otf?v=1711742818043") format("opentype");
+    font-weight: normal, bold;
+    src: url("https://cdn.glitch.global/994c2bd5-1923-49dd-a626-a1884296c61d/Gill%20Sans.otf?v=1711738555310") format("opentype"), 
+      url("https://cdn.glitch.global/994c2bd5-1923-49dd-a626-a1884296c61d/Gill%20Sans%20Bold.otf?v=1711742818043") format("opentype");
 }
