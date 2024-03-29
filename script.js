@@ -38,7 +38,7 @@ function recalculateTime() {
   let finalTime = timeOfWriting + 7500000000n*yearMs; // 7.5 billion years after time of writing
   // Updates in real-time!
   let tLeft = (finalTime - BigInt(Date.now()));
-  let dayMs = BigInt(24*60*60*100);
+  let dayMs = BigInt(24*60*60*1000);
   let sunsetsLeft = tLeft/dayMs; 
   let roundsExactly = tLeft % dayMs == 0;// if rounds exactly, do not add 1.
   // has yours passed yet? 
