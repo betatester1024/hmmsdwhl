@@ -3,14 +3,16 @@ function byId(id) {
   return document.getElementById(id);
 }
 
-
+let gotLoc = false;
 let currLoc = {x:-2.0, y:0.0};
 function globalOnload() {
   navigator.geolocation.getCurrentPosition((position) => {
     console.log("got pos!");
     currLoc.x = position.coords.latitude;
+    gotLoc = true;
     currLoc.y = position.coords.longitude;
     recalculateTime();
+    // byId("")
   });
   recalculateTime();
   setInterval(recalculateTime, 2000);
@@ -32,8 +34,15 @@ function recalculateTime() {
   let setTime = SunCalc.getTimes(new Date(), currLoc.x, currLoc.y).sunset;
   console.log(setTime.getTime(), Date.now())
   if (Date.now() < setTime.getTime() && !roundsExactly) {// not yet sunset
-    console.log("not yet sunset!");
+    // console.log("not yet sunset!");
     sunsetsLeft++;
+  }
+  
+  if (gotLoc) {
+    if (Date.now > setTime.getTime()) {
+      byId("info").innerText = "A sunset has occured at your location today."
+    }
+    else byId("info").innerText = "A sunset has not yet occured at your location today."
   }
   // else if (Date.now() < roundsExactly) 
     // sunsetsLeft;
@@ -41,5 +50,5 @@ function recalculateTime() {
   let percentThru = (Date.now() - Number(startTime))/(Number(finalTime) - Number(startTime));
   console.log(percentThru)
   byId("progressInner").style.width = percentThru*100+"%";
-  byId("progressText").innerText = sunsetsLeft +" sunsets left"
+  byId("progressText").innerText = sunsetsLeft.toLocaleString() +(gotLoc?" left":" (estimated)");
 }
