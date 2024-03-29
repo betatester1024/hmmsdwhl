@@ -33,9 +33,10 @@ body {
   display: inline-block;
   white-space: nobreak;
   opacity: 0;
-  top: 90%;
+  top: -90%;
   position:relative;
   margin: 0px;
+  transition: all 0.2s;
 }
 
 #info {
@@ -81,5 +82,5 @@ div#progressInner {
 @font-face {
     font-family: GillSans;
     font-weight: bold;
-    src: url("https://cdn.glitch.global/994c2bd5-1923-49dd-a626-a1884296c61d/Gill%20Sans.otf?v=1711738555310") format("opentype");
+    src: url("https://cdn.glitch.global/994c2bd5-1923-49dd-a626-a1884296c61d/Gill%20Sans.otf?v=1711738555310") url("https://cdn.glitch.global/994c2bd5-1923-49dd-a626-a1884296c61d/Gill%20Sans%20Bold.otf?v=1711742818043") format("opentype");
 }

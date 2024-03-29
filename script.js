@@ -5,22 +5,35 @@ function byId(id) {
 
 let gotLoc = false;
 let currLoc = {x:-2.0, y:0.0};
-function globalOnload() {
-  navigator.geolocation.getCurrentPosition((position) => {
-    console.log("got pos!");
+
+function accessLoc() {
+    navigator.geolocation.getCurrentPosition((position) => {
     currLoc.x = position.coords.latitude;
     gotLoc = true;
     currLoc.y = position.coords.longitude;
     recalculateTime();
     // byId("")
+  }, (err)=>{
+    byId("info").style.color = "red";
+    if (err.code == 1) {
+      byId("info").innerHTML += `<a href="javascript:accessLoc()">Retry?</a>`
+    }
   });
+}
+function globalOnload() {
+  accessLoc();
+  let i=0;
   for (let ele of document.getElementsByClassName("animateIn")) {
-    
+    animateEle(ele, i);
+    i++;
   }
   recalculateTime();
   setInterval(recalculateTime, 2000);
 }
 
+function animateEle(ele, i) {
+  setTimeout(()=>{ele.style.opacity = 1; ele.style.top = "0%";}, i*100);
+}
 function recalculateTime() {
   let timeOfWriting = 1711728083552n;
   let yearMs = BigInt(365*24*60*60*1000);
