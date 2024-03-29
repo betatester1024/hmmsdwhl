@@ -19,6 +19,9 @@ div#progressOuter {
 }
 
 div#progressInner {
+  position:absolute;
+  left:0px;
+  top
   --system-red: #ee0000;
   --system-blue:#0a84ff;
   height:100%;

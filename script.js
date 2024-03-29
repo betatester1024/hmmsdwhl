@@ -1,3 +1,4 @@
+
 function byId(id) {
   return document.getElementById(id);
 }
@@ -11,9 +12,11 @@ function globalOnload() {
   let sunsetsLeft = (finalTime - BigInt(Date.now()))/BigInt(24*60*60*100);// timeLeft = finalTime - now)/ 
   // has yours passed yet? 
   let timeNow = new Date();
-  if (timeNow )
+  console.log(SunCalc.getTimes(new Date(), 51.6, -0.1));
+
+  // if (timeNow)
   let percentThru = (Date.now() - Number(startTime))/(Number(finalTime) - Number(startTime));
   console.log(percentThru)
   byId("progressInner").style.width = percentThru*100+"%";
-  byId("progressText").innerText = ""
+  byId("progressText").innerText = "Beans."
 }
