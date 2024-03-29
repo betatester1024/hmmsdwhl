@@ -9,12 +9,18 @@ body {
 div#progressOuter {
   width: 90%;
   margin:0px auto;
-  height: 30%;
+  transform:translateY(-50%);
+  position:relative;
+  top:50%;
+  height: 150px;
   background-color: #eee;
 }
 
-div#inner {
+div#progressInner {
+  --system-red: #ee0000;
+  --system-blue:#0a84ff;
   height:100%;
-  
-  transition:width 0px
+  width: 0%;
+  background-color: var(--system-blue);
+  transition:width 500ms bounce-in;
 }
