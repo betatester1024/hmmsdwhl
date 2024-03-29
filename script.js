@@ -14,6 +14,9 @@ function globalOnload() {
     recalculateTime();
     // byId("")
   });
+  for (let ele of document.getElementsByClassName("animateIn")) {
+    
+  }
   recalculateTime();
   setInterval(recalculateTime, 2000);
 }
@@ -39,7 +42,7 @@ function recalculateTime() {
   }
   
   if (gotLoc) {
-    if (Date.now > setTime.getTime()) {
+    if (Date.now() > setTime.getTime()) {
       byId("info").innerText = "A sunset has occured at your location today."
     }
     else byId("info").innerText = "A sunset has not yet occured at your location today."
