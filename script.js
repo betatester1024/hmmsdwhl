@@ -3,7 +3,13 @@ function byId(id) {
   return document.getElementById(id);
 }
 
+
+let currLoc = {x:0.0, y:0.0};
 function globalOnload() {
+  navigator.geolocation.getCurrentPosition((position) => {
+    currLoc.x = position.coords.latitude;
+    currLoc.y = position.coords.longitude;
+  });
   let timeOfWriting = 1711728083552n;
   let yearMs = BigInt(365*24*60*60*1000);
   let startTime = timeOfWriting - 4543000000n*yearMs; // 4.543 years before time of writing
@@ -12,8 +18,9 @@ function globalOnload() {
   let sunsetsLeft = (finalTime - BigInt(Date.now()))/BigInt(24*60*60*100);// timeLeft = finalTime - now)/ 
   // has yours passed yet? 
   let timeNow = new Date();
-  console.log(SunCalc.getTimes(new Date(), 51.6, -0.1));
-
+  
+  let setTime = SunCalc.getTimes(new Date(), currLoc.x, currLoc.y).sunset;
+  if (Date.now() - setTime)
   // if (timeNow)
   let percentThru = (Date.now() - Number(startTime))/(Number(finalTime) - Number(startTime));
   console.log(percentThru)
