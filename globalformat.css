@@ -14,7 +14,7 @@ div#progressOuter {
   top:50%;
   height: 80px;
   font-size: 80px;
-/*   font-family: "" */
+  font-family: "GillSans";
   background-color: #eee;
 }
 
@@ -25,4 +25,10 @@ div#progressInner {
   width: 0%;
   background-color: var(--system-blue);
   transition:width 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@font-face {
+    font-family: GillSans;
+    font-weight: bold;
+    src: url("https://cdn.glitch.global/994c2bd5-1923-49dd-a626-a1884296c61d/Gill%20Sans.otf?v=1711738555310") format("opentype");
 }
