@@ -43,9 +43,7 @@ function recalculateTime() {
   let roundsExactly = tLeft % dayMs == 0;// if rounds exactly, do not add 1.
   // has yours passed yet? 
   let timeNow = new Date();
-  console.log(roundsExactly);
   let setTime = SunCalc.getTimes(new Date(), currLoc.x, currLoc.y).sunset;
-  console.log(setTime.getTime(), Date.now())
   if (Date.now() < setTime.getTime() && !roundsExactly) {// not yet sunset
     // console.log("not yet sunset!");
     sunsetsLeft++;
