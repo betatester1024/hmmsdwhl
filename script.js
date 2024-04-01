@@ -44,10 +44,10 @@ function recalculateTime() {
   let sunsetsLeft = tLeft/dayMs; 
   
   if (apr1) sunsetsLeft = 0;
-  
+//   
   let roundsExactly = tLeft % dayMs == 0;// if rounds exactly, do not add 1.
   // has yours passed yet? 
-  let timeNow = new Date();
+  // let timeNow = new Date();
   let setTime = SunCalc.getTimes(new Date(), currLoc.x, currLoc.y).sunset;
   if (Date.now() < setTime.getTime() && !roundsExactly) {// not yet sunset
     // console.log("not yet sunset!");
@@ -63,8 +63,15 @@ function recalculateTime() {
   // else if (Date.now() < roundsExactly) 
     // sunsetsLeft;
   // if (timeNow)
-  if (apr1) finalTime = setTime;
-  if (apr1) startTime = new Date().;
+  if (apr1) finalTime = setTime.getTime();
+  if (apr1) {
+    let tm = new Date();
+    tm.setHours(0);
+    tm.setMinutes(0);
+    tm.setSeconds(0);
+    tm.setMilliseconds(0);
+    startTime = tm.getTime();
+  }
   let percentThru = (Date.now() - Number(startTime))/(Number(finalTime) - Number(startTime));
   console.log(percentThru)
   byId("progressInner").style.width = percentThru*100+"%";
