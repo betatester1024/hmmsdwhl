@@ -74,6 +74,7 @@ function recalculateTime() {
   }
   let percentThru = (Date.now() - Number(startTime))/(Number(finalTime) - Number(startTime));
   console.log(percentThru)
-  byId("progressInner").style.width = percentThru*100+"%";
+  byId("progressInner").style.width = Math.min(1,percentThru)*100+"%";
+  if (percentThru > 0.8) byId("progressInner").style.backgroundColor = "var(--system-red)";
   byId("progressText").innerText = sunsetsLeft.toLocaleString() +(gotLoc?" left":" (estimated)");
 }
