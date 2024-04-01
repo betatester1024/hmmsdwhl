@@ -1,3 +1,4 @@
+let apr1 = false;
 
 function byId(id) {
   return document.getElementById(id);
@@ -17,7 +18,8 @@ function accessLoc() {
     byId("info").style.color = "red";
   });
 }
-function globalOnload() {
+function globalOnload(a) {
+  if (a) apr1 = true;
   accessLoc();
   let i=0;
   for (let ele of document.getElementsByClassName("animateIn")) {
@@ -40,6 +42,9 @@ function recalculateTime() {
   let tLeft = (finalTime - BigInt(Date.now()));
   let dayMs = BigInt(24*60*60*1000);
   let sunsetsLeft = tLeft/dayMs; 
+  
+  if (apr1) sunsetsLeft = 0;
+  
   let roundsExactly = tLeft % dayMs == 0;// if rounds exactly, do not add 1.
   // has yours passed yet? 
   let timeNow = new Date();
@@ -58,6 +63,8 @@ function recalculateTime() {
   // else if (Date.now() < roundsExactly) 
     // sunsetsLeft;
   // if (timeNow)
+  if (apr1) finalTime = setTime;
+  if (apr1) startTime = new Date().;
   let percentThru = (Date.now() - Number(startTime))/(Number(finalTime) - Number(startTime));
   console.log(percentThru)
   byId("progressInner").style.width = percentThru*100+"%";

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- 
+
+
+    Welcome to another site by BetaOS Services: betaos.services@gmail.com 
+
+
+                                                                                -->
+  
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="BREAKING: World running out of sunsets imminently - Check here for latest updates">
+    <meta property="og:image" content="https://cdn.glitch.global/994c2bd5-1923-49dd-a626-a1884296c61d/HMMSDWHL.png?v=1711727216702" />
+    <link rel="icon" href="https://cdn.glitch.global/994c2bd5-1923-49dd-a626-a1884296c61d/HMMSDWHL.png?v=1711727216702" />
+    <title>How Many More Sunsets Do We Have Left?</title>
+    <link rel="stylesheet" href="/globalformat.css" />
+    <script src="/script.js" defer></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/suncalc@1.9.0/suncalc.js"></script>
+    <style>
+      .main {
+        animation:strobe 3s infinite;
+      }
+      @keyframes strobe {
+        0% {background-color: #eee;}
+        50% {background-color: #c339;}
+        100% {background-color: #eee;}
+      }
+      .red {
+        color: var(--system-red);
+        
+      }
+    </style>
+  </head>
+  <body onload = "globalOnload(true);">
+    <div class="main">
+      <div id="title">
+        <h2 class="animateIn red">Breaking</h2>
+        <h2 class="animateIn red">news:</h2>
+        <h2 class="animateIn">World</h2>
+        <h2 class="animateIn">running</h2>
+        <h2 class="animateIn">out</h2>
+        <h2 class="animateIn">of</h2>
+        <h2 class="animateIn">sunsets</h2>
+        <h6 class="animateIn">Last sunset of day, reports say</h6>
+<!--         <h2 class="animateIn">left?</h2> -->
+      </div>
+      <span id="info">Your location is required to check whether a sunset has occured yet.</span>
+      <div id="progressOuter">
+        <div id="progressInner">
+          <span id="progressText"></span>
+        </div>
+      </div>  
+    </div>
+    
+  </body>
+</html>
