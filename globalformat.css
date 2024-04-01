@@ -31,15 +31,22 @@ body {
   padding: 10px;
 }
 
+.animateIn_noCSS, .animateIn {
+  opacity: 0;
+  top: 90%;
+  position:relative;
+  transition: all 0.2s;
+}
+
 .animateIn {
   
   display: inline-block;
-  opacity: 0;
-  top: -90%;
-  position:relative;
+  top:-90%;
+  
   margin: 0px;
-  transition: all 0.2s;
+  
 }
+
 
 #info {
   color: var(--system-blue);

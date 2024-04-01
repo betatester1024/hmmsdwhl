@@ -26,6 +26,10 @@ function globalOnload(a) {
     animateEle(ele, i);
     i++;
   }
+  for (let ele of document.getElementsByClassName("animateIn_noCSS")) {
+    animateEle(ele, i);
+    i++;
+  }
   recalculateTime();
   setInterval(recalculateTime, 2000);
 }
