@@ -97,12 +97,15 @@ function sendXMLRequest(content) {
       if(http.readyState == 4 && http.status == 200) {
         let jData = JSON.parse(http.responseText);
         let bList = jData.response.results[3].blogs;
-        console.log(bList);
+        // console.log(bList);
+        if (bList.length == 0) blacklist.push(content);
         for (let b of bList) {
           if (b.title.toLowerCase() == "ginkgo") {
             console.log("YES!");
+            console.log(b);
+            killSwitch = true;
           }
-          else console.log(b.title.toLowerCase());
+          // else console.log(b.title.toLowerCase());
         }
       }
   }
@@ -113,17 +116,29 @@ function sendXMLRequest(content) {
 let killSwitch = false;
 const delay = (time) => new Promise((resolve, reject) => setTimeout(resolve, time))
 
+let blacklist = [];
+
 async function findBlog() {
   for (let clen = 1; clen<=20; clen++) {
     let ch = [];
     for (let i=0; i<clen; i++) {ch.push(0)};
     while (ch[ch.length-1] < 26) {
       let assembled = "";
-      for (let i=0; i<clen; i++) assembled+= String.fromCharCode(97+ch[i]);
+      for (let i=clen-1; i>=0; i--) assembled+= String.fromCharCode(97+ch[i]);
       console.log(assembled);
+      let reject = false;
+      for (let i=0; i<blacklist.length; i++) {
+        if (assembled.startsWith(blacklist[i])) {
+          reject = true;
+          console.log("REJECTED "+assembled);
+          break;
+        }
+      }
       if (killSwitch) return;
-      sendXMLRequest(assembled)
-      await delay(500);
+      if (!reject) {
+        sendXMLRequest(assembled)
+        await delay(100);
+      }
       
       ch[0]++;
       let curr = 0;
