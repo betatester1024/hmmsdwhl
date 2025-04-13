@@ -120,13 +120,13 @@ function sendXMLRequest(content) {
 let killSwitch = false;
 const delay = (time) => new Promise((resolve, reject) => setTimeout(resolve, time))
 
-let blacklist = ["aa","ac","ad","ae","af","ag","ah","ai","aj","ak","am","ao","bb","bc","bd","bg","bh","bj","bk","bm","bn","bp","cb","cc","cd","cf","cg","ci","cj","cl","cm","cn","cp","db","dc","dd","df","dh","dg","dj","dk","dl","dm","dn","dp","eb","ec","ed","ee","ef","eg","eh","ei","ej","ek","em","eo","ep","fb","fc","fd","ff","fg","fh","fj","fk","fm","fn","fp","gc","gd","ge","gf","gh","gj","gk","gm","gn","gp","hb","hd","hf","hc","hg","hh","hi","hj","hk","hl","hm","hp","ia","ib","ic","id","if","ig","ih","ie","ii","ij","ik","il","io","ip","jb","jc","jd","je","jf","jg","jh","ji","jj","jl","jk","jn","jo","ka","kb","kc","kd","kf","kg","kh","kj","kl","km","kk","ko","kp","lb","ki","lc","ld","lf","lg","lh","lj","lk","lm","ln","ll","lp","md","mb","mf","mg","mj","mh","mk","ml","mm","mn","mp","na","nb","nc","nd","ck","nf","ng","nh","nj","nk","nl","nm","nn","oa","og","oh","oe","oi","oj","ok","ol","om","oo","pb","pc","pd","pg","ph","pj","pk","pm","pp","bac","bad","baf","bag","bah","fl","bai","baj","bak","ban","bao","hn","bap","gba","gbc","gbe","gbf","gbg","jm","gbh","gbj","gbk","gbl","gbm","gbn","gbo","gbp","mcb","mcd","mcc","mce","mcf","mc","mcg","oci","ocj","mch","ocl","ock","ocm","ocn","oco","ocp","odc","odd","ode","odf","odg","odh","odi","odj","odk","odl","odm","odo","odn","np","peb","pec","odp","ped","pee","peg","peh","pef","pei","pej","pek","pel","pem","op","pf","pep","pn","baa","baaa","caab","caac","caad","caae","caaf","caag","caah","caai","caaj","caak","caam","caan","caao","caap","caba","cabb","cabc","cabd","cabe","cabf","cabg","cabh","cabi","cabj","cabk","cabl","cabm","cabn","cabo","cabp","caca","cacb","cacc","cacf","cacg","cacd","cach","cace","caci","cacj","cack","cacl","cacm","cacn","cacp","cada","cadb","gbd","cadc","cadd","cade","cadf","cadg","caco","cadh","cadi","cadj","cadk","cadl","cadm","cadn","cado","cadp","caeb","caec","caed","caee","caef","caeg","caeh","caea","caei","caej","caek","cael","caen","caeo","caep","cafa","cafb","cafc","mca","cafd","cafe","caff","cafg","cafh","cafi","cafj","cafk","cafl","cafm","cafn","cafo","cafp","caga","cagb","cagc","cagd","cage","cagf","cagg","cagh","cagi","cagj","cagk","cagl","cagm","cagn","cago","cagp","caha","cahb","cahc","cahd","cahe","cahf","cahg","cahh","cahi","cahj","cahk","cahl","cahm","cahn","cahp","caia","caic","caid","caie","caif","caig","caih","caii","caij","caik","cail","caim","cain","caio","caip","caja","cajb","cajc","cajd","caje","cajf","cajg","cajh","caji","cajj","cajk","cajl","cajm","cajo","cajp","caka","cakb","cakc","cakd","cake","cakg","cakh","cakf","caki","cakj","cakk","cakl","cakm","cakn","cako","caal","cakp","calc","cald","cale","calf","calg","calh","cali","calj","calk","call","caln","calo","calp","cama","camb","camc","camd","came","camg","camh","cami","camj","camk","caml","camm","camn","camo","camp","cana","canb","canc","cand","cane","canf","cang","cani","canh","canj","cank","cann","cano","canm","canp","caoa","caob","caoc","caem","caod","caoe","caof","caog","caoh","caho","caoi","caib","caoj","caok","caol","cajn","caom","calb","caon","caoo","camf","caop","capa","capb","canl","capc","capd","cape","capf","capg","caph","capi","capj","capk","capl","capm","capn","capo","capp","obaa","obab","obac","obad","obae","obaf","obag","obah","obai","obaj","obak","obal","obam","oban","obao","obap","obba","obbb","obbc","obbd","obbe","obbf","obbg","obbi","obbj","obbk","obbh","obbl","obbm","obbn","obbo","obbp","obcb","obcc","obcd","obcf","obce","obcg","obch","obcj","obck","obcl","obci","obcm","obco","obcp","obcn","obda","obdb","obdc","obdd","obde","obdf","obdg","obdh","obdi","obdk","obdl","obdm","obdn","obdo","obdp","obea","obdj","obec","obeb","obed","obee","obeg","obca","obef"];
+let blacklist = [];
 
 async function findBlog() {
   for (let clen = 1; clen<=20; clen++) {
     let ch = [];
     for (let i=0; i<clen; i++) {ch.push(0)};
-    while (ch[ch.length-1] < 16) {
+    while (ch[ch.length-1] < 26) {
       let assembled = "";
       for (let i=clen-1; i>=0; i--) assembled+= String.fromCharCode(97+ch[i]);
       // console.log(assembled);
@@ -149,7 +149,7 @@ async function findBlog() {
         ch[clen-reason.length]++;
         console.log("INCR", clen-reason.length)
         let curr2 = clen-reason.length;
-        while (ch[curr2] >= 16) {
+        while (ch[curr2] >= 26) {
           if (curr2 == ch.length-1) break;
           ch[curr2] = 0;
           ch[curr2+1]++;
