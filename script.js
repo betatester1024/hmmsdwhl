@@ -98,7 +98,7 @@ function sendXMLRequest(content) {
         let jData = JSON.parse(http.responseText);
         let bList = jData.response.results[3].blogs;
         // console.log(bList);
-        if (bList.length <= 3) {
+        if (bList.length == 0) {
           blacklist.push(content);
           console.log(content, "FAIL!");
         }
