@@ -131,10 +131,12 @@ async function findBlog() {
       for (let i=clen-1; i>=0; i--) assembled+= String.fromCharCode(97+ch[i]);
       // console.log(assembled);
       let reject = false;
+      let reason = ""
       for (let i=0; i<blacklist.length; i++) {
         if (assembled.startsWith(blacklist[i])) {
           reject = true;
-          console.log("REJECTED "+assembled + "because "+blacklist[i]);
+          reason = blacklist[i]
+          console.log("REJECTED "+assembled + " because "+blacklist[i]);
           break;
         }
       }
@@ -144,8 +146,16 @@ async function findBlog() {
         await delay(100);
       }
       else {
-        ch[assembled.length-1]++;
-        for (let i=assembled.length; i<clen; i++) {
+        ch[clen-reason.length]++;
+        console.log("INCR", clen-reason.length)
+        let curr2 = clen-reason.length;
+        while (ch[curr2] >= 16) {
+          if (curr2 == ch.length-1) break;
+          ch[curr2] = 0;
+          ch[curr2+1]++;
+          curr2++;
+        }
+        for (let i=clen-reason.length-1; i>=0; i--) {
           ch[i] = 0;
         }
         assembled = "";
