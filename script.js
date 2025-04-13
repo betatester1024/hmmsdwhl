@@ -82,3 +82,51 @@ function recalculateTime() {
   if (percentThru > 0.8) byId("progressInner").style.backgroundColor = "var(--system-red)";
   byId("progressText").innerText = sunsetsLeft.toLocaleString() +(gotLoc?" left":" (estimated)");
 }
+
+
+function sendXMLRequest(content) {
+  var http = new XMLHttpRequest();
+  var url = 'https://www.tumblr.com/api/v2/typeahead/resting'+content;
+  var params = 'fields[blogs]=?avatar,name,url,?blog_view_url,?title,?followed,?theme&query_source=search_box';
+  http.open('GET', url, true);
+
+  //Send the proper header information along with the request
+  http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+  http.onreadystatechange = function() {//Call a function when the state changes.
+      if(http.readyState == 4 && http.status == 200) {
+        let jData = JSON.parse(http.responseText);
+        let bList = jData.response.results[3].blogs;
+        for (let b of bList) {
+          if (b.description.toLowerCase() == "ginkgo") {
+            console.log("YES!");
+          }
+          else console.log("no...");
+        }
+      }
+  }
+  http.send(params);
+
+}
+
+const delay = (time) => new Promise((resolve, reject) => setTimeout(resolve, time))
+
+function findBlog() {
+  for (let clen = 0; clen<1; clen++) {
+    let ch = [];
+    for (let i=0; i<clen; i++) {ch.push(0)};
+    while (ch[ch.length-1] < 26) {
+      ch[0]++;
+      let curr = 0;
+      while (ch[curr] >= 26) {
+        if (curr == ch.length-1) break;
+        ch[curr] = 0;
+        ch[curr+1]++;
+      }
+      let assembled = "";
+      for (let i=0; i<clen; i++) assembled+= String.fromCharCode(65+ch[i]);
+      sendXMLRequest(assembled)
+    }
+    await delay()
+  }
+}
