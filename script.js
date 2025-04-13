@@ -97,11 +97,12 @@ function sendXMLRequest(content) {
       if(http.readyState == 4 && http.status == 200) {
         let jData = JSON.parse(http.responseText);
         let bList = jData.response.results[3].blogs;
+        console.log(bList);
         for (let b of bList) {
-          if (b.description.toLowerCase() == "ginkgo") {
+          if (b.title.toLowerCase() == "ginkgo") {
             console.log("YES!");
           }
-          else console.log("no...");
+          else console.log(b.title.toLowerCase());
         }
       }
   }
@@ -109,13 +110,21 @@ function sendXMLRequest(content) {
 
 }
 
+let killSwitch = false;
 const delay = (time) => new Promise((resolve, reject) => setTimeout(resolve, time))
 
-function findBlog() {
-  for (let clen = 0; clen<1; clen++) {
+async function findBlog() {
+  for (let clen = 1; clen<=20; clen++) {
     let ch = [];
     for (let i=0; i<clen; i++) {ch.push(0)};
     while (ch[ch.length-1] < 26) {
+      let assembled = "";
+      for (let i=0; i<clen; i++) assembled+= String.fromCharCode(97+ch[i]);
+      console.log(assembled);
+      if (killSwitch) return;
+      sendXMLRequest(assembled)
+      await delay(500);
+      
       ch[0]++;
       let curr = 0;
       while (ch[curr] >= 26) {
@@ -123,10 +132,6 @@ function findBlog() {
         ch[curr] = 0;
         ch[curr+1]++;
       }
-      let assembled = "";
-      for (let i=0; i<clen; i++) assembled+= String.fromCharCode(65+ch[i]);
-      sendXMLRequest(assembled)
     }
-    await delay()
   }
 }
